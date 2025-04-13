@@ -1,0 +1,37 @@
+body {
+    margin: 0;
+    background:  #d7fff6;
+  }
+  table {
+    margin: auto;
+    margin-top: 1em;
+    border-collapse: collapse; 
+    line-height: 1.1;
+    font-family: "Century Gothic", sans-serif;
+    background:  radial-gradient(farthest-corner at 50% 50%, white, #b8fff4);
+    color: #23094d;
+  }
+  caption {
+    font-family: annabelle, cursive;
+    font-weight: bold;
+    font-size: 2em;
+    padding: 10px; 
+    color: #F3CD26;
+    text-shadow: 1px 1px 0 rgba(0,0,0,.3);
+   }
+  caption:before, caption:after {
+    content: "\274B";
+    color: #98f0fc;
+    margin: 0 10px;
+  }
+  th {
+    text-align: center;
+    padding: 40px; 
+    border: 1px solid #0400fc;
+  }
+  td {
+    text-align: center;
+    font-size: 2.5em;
+    padding: 10px 14px;
+    border: 1px solid #08b9ff;
+  }

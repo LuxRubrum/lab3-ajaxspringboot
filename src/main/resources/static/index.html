@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Spring Boot и Node JS - Лабораторная работа №3 - WEB программирование</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="CSS/style.css"> 
+        <script src="JS/jquery-3.7.1.js"></script>
+
+    </head>
+    <body>
+        <table id="nameTable"> </table>         
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+            initTable();
+            $("#nameTable").on("click", function (e) {
+                    //var iRow = $(e.target).closest('tr').index();                
+                    var iCol = $(e.target).closest('td').index() + 1;
+                    //response - ответ, который выведем в alert
+                    let response = "Выбранный столбец: " + iCol + "\n"
+                    //Получение всех iCol-тых элементов (ячеек) из таблицы (по сути выбираем столбец)
+                    var array = $('#nameTable td:nth-child('+iCol+')');
+                    //data - будущее произведение
+                    let data = 1;
+                    response += "Значения столбца: "
+                    //for прогоняет каждый индекс ячейки
+                    for(let i = 0; i < array.length; i++) {
+                        //.get() получает ячецку индекска i, innerText получает текст из этой ячейки,
+                        //Number() конвертирует в Number
+                        let temp = Number(array.get(i).innerText);
+                        data = data * temp;
+                        response += temp + " ";
+                    }
+                    response += "\n";
+                    response += "Произведение всех ячеек столбца: " + data;
+                    alert(response); 
+                });
+            });
+            function initTable(){
+                $('#nameTable').load('/api/gettable', function(responseTxt, statusTxt, xhr){
+                        if(xhr.status >=200 && xhr.status < 300){                            
+                            //alert(responseTxt);
+                        }
+                        else{
+                            alert("Error: " + xhr.status + ": " + xhr.statusText);
+                        }
+                    });                
+                
+            }
+        </script>
+
+    </body>
+</html>
