@@ -9,36 +9,59 @@
 
     </head>
     <body>
+        <h1>Таблица случайных значений</h1>
+        <br>
+        <div>
+            <p>Введите ширину таблицы: <input id="width" type="number" min=1 value = "5"></input></p>
+        </div>
+        <div>
+            <p>Введите высоту таблицы: <input id="height" type="number" min=1 value = "5"></input></p>
+        </div>
+        <button id="generate">Сгенерировать таблицу</button>
+        <p id="result"></p>
         <table id="nameTable"> </table>         
 
-        <script type="text/javascript">
+        <script type="text/javascript"> 
             $(document).ready(function () {
-            initTable();
+            $("#generate").click( function() {
+                let url = '/api/gettable?width='+$('#width').val()+'&height='+$('#height').val();
+                $('#nameTable').load(url, function(responseTxt, statusTxt, xhr){
+                        if(xhr.status >=200 && xhr.status < 300){                            
+                            //alert(responseTxt);
+                        }
+                        else{
+                            alert("Error: " + xhr.status + ": " + xhr.statusText);
+                        }
+                    });             
+            });
             $("#nameTable").on("click", function (e) {
                     //var iRow = $(e.target).closest('tr').index();                
-                    var iCol = $(e.target).closest('td').index() + 1;
-                    //response - ответ, который выведем в alert
-                    let response = "Выбранный столбец: " + iCol + "\n"
+                    let iCol = $(e.target).closest('td').index() + 1;
+                    //response - ответ, который выведем в result
+                    let response1 = "Выбранный столбец: " + iCol + "\n"
                     //Получение всех iCol-тых элементов (ячеек) из таблицы (по сути выбираем столбец)
-                    var array = $('#nameTable td:nth-child('+iCol+')');
+                    let array = $('#nameTable td:nth-child('+iCol+')');
                     //data - будущее произведение
                     let data = 1;
-                    response += "Значения столбца: "
+                    let response2 = "Значения столбца: "
                     //for прогоняет каждый индекс ячейки
                     for(let i = 0; i < array.length; i++) {
                         //.get() получает ячецку индекска i, innerText получает текст из этой ячейки,
                         //Number() конвертирует в Number
                         let temp = Number(array.get(i).innerText);
                         data = data * temp;
-                        response += temp + " ";
+                        if(i == 0) {
+                            response2 += temp;
+                        } else {
+                            response2 += " * " + temp;
+                        }
                     }
-                    response += "\n";
-                    response += "Произведение всех ячеек столбца: " + data;
-                    alert(response); 
+                    let response3 = "Произведение всех ячеек столбца: " + data;
+                    $("#result").html('<p id="result1">'+response1+'</p><p id="result2">'+response2+'</p><p id="result3">'+response3+'</p>');
                 });
             });
-            function initTable(){
-                $('#nameTable').load('/api/gettable', function(responseTxt, statusTxt, xhr){
+            function initTable(width, height){
+                $('#nameTable').load('/api/gettable', width+' '+height, function(responseTxt, statusTxt, xhr){
                         if(xhr.status >=200 && xhr.status < 300){                            
                             //alert(responseTxt);
                         }

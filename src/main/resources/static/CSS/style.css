@@ -1,15 +1,15 @@
 body {
     margin: 0;
-    background:  #d7fff6;
+    background:  whitesmoke;
   }
   table {
-    margin: auto;
+    margin-left: 2em;
     margin-top: 1em;
-    border-collapse: collapse; 
     line-height: 1.1;
-    font-family: "Century Gothic", sans-serif;
-    background:  radial-gradient(farthest-corner at 50% 50%, white, #b8fff4);
-    color: #23094d;
+    font-family: "Times New Roman", serif;
+    font-weight: bold;
+    background:  whitesmoke;
+    color: black;
   }
   caption {
     font-family: annabelle, cursive;
@@ -17,7 +17,7 @@ body {
     font-size: 2em;
     padding: 10px; 
     color: #F3CD26;
-    text-shadow: 1px 1px 0 rgba(0,0,0,.3);
+    text-shadow: 1px 1px 0 black;
    }
   caption:before, caption:after {
     content: "\274B";
@@ -26,12 +26,30 @@ body {
   }
   th {
     text-align: center;
-    padding: 40px; 
-    border: 1px solid #0400fc;
+    padding: 10px; 
+    border: 1px solid black;
   }
   td {
     text-align: center;
-    font-size: 2.5em;
-    padding: 10px 14px;
-    border: 1px solid #08b9ff;
+    font-size: 1.5em;
+    padding: 10px;
+    border: 1px solid black;
+  }
+  h1 {
+    margin: 20px;
+    font-family: "Times New Roman", serif;
+    font-weight: bold;
+    color: black;
+    font-size: 3em;
+  }
+  p {
+    margin: 20px;
+    font-family: "Times New Roman", serif;
+    color: black;
+    font-size: 1em;
+  }
+  button {
+    font-family: "Times New Roman", serif;
+    color: black;
+    font-size: 1em;
   }
